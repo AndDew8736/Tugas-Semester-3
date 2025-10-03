@@ -8,8 +8,32 @@ public class LevelManager : MonoBehaviour
     public static LevelManager main;
     public Transform[] path;
     public Transform startPoint;
+    public int money;
+    public int researchPoints = 0;
+    private void Start()
+    {
+        money = 100;
+    }
     private void Awake()
     {
-        main = this; 
+        main = this;
+    }
+    public void moneyUp(int amount)
+    {
+        money += amount;
+    }
+    public bool spendMoney(int amount)
+    {
+        if (amount <= money)
+        {
+            //buy
+            money -= amount;
+            return true;
+        }
+        else
+        {
+            //broke
+            return false;
+        }
     }
 }

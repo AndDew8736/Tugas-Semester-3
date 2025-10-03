@@ -28,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
     public int enemiesAlive;
     private int enemiesLeftToSpawn;
     private bool isSpawning = false;
+    private int moneyPerRound = 100;
     private void Start()
     {
         StartCoroutine(StartWave());
@@ -73,6 +74,7 @@ public class EnemySpawner : MonoBehaviour
         isSpawning = false;
         timeSinceLastSpawn = 0f;
         currentWave++;
+        LevelManager.main.moneyUp(moneyPerRound);
         StartCoroutine(StartWave());
     }
     private void EnemyDestroyed()

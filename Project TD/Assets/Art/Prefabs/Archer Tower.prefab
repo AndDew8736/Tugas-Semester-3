@@ -52,7 +52,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3735248182575208579, guid: 6fa012956a8b47b409b54322134264cb, type: 3}
   firingPoint: {fileID: 4116219146118228030}
   targetingRange: 8
-  rotationSpeed: 200
+  rotationSpeed: 600
   shotsPerSecond: 1
 --- !u!1 &1172348296959112179
 GameObject:
