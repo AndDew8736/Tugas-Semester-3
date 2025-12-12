@@ -8,12 +8,9 @@ public class LevelManager : MonoBehaviour
     public static LevelManager main;
     public Transform[] path;
     public Transform startPoint;
+    public int playerHealth = 100;
     public int money;
     public int researchPoints = 0;
-    private void Start()
-    {
-        money = 100;
-    }
     private void Awake()
     {
         main = this;
@@ -34,6 +31,15 @@ public class LevelManager : MonoBehaviour
         {
             //broke
             return false;
+        }
+    }
+    public void playerTakesDamage(int dmg)
+    {
+        playerHealth -= dmg;
+        if(playerHealth <= 0)
+        {
+            //Into the inferno
+            Death.Dies.Invoke();
         }
     }
 }

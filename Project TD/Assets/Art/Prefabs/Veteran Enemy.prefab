@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6622587063151148436}
   - component: {fileID: 5492742428871176455}
   m_Layer: 6
-  m_Name: Base Enemy
+  m_Name: Veteran Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.8113208, g: 0.09439881, b: 0.112013236, a: 0}
   m_FlipX: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: -9103454391970458119}
-  moveSpeed: 5
+  moveSpeed: 7
 --- !u!114 &5492742428871176455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366ad4480c060994a89f18a452d67e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 2
-  moneyDrop: 5
+  HP: 3
+  moneyDrop: 10
 --- !u!1 &4509339054454423533
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,8 +251,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1765063485
   m_SortingLayer: 1
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 570fc99bde30c6c41af7347e08f11690, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 76197d192a34aec44ada10f02a7d3939, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

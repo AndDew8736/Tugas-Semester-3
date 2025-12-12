@@ -8,13 +8,19 @@ public class ProjectileController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [Header("Stats")]
     [SerializeField] private float projectileSpeed = 5f;
-    [SerializeField] private int projectileDMG = 1;
+    [SerializeField] public int projectileDMG = 1;
     [SerializeField] private float projectileDuration = 5f;
-    [SerializeField] private bool destroyOnCollision = true;
+    [SerializeField] private bool limitedPiercing = true;
+    [SerializeField] private int pierceCount = 1;
     private Transform target;
+    public static ProjectileController main;
     public void setTarget(Transform _target)
     {
         target = _target;
+    }    
+    public void setDmg(int towerDMG)
+    {
+        projectileDMG = towerDMG;
     }
     // private void FixedUpdate()
     // {
@@ -28,8 +34,9 @@ public class ProjectileController : MonoBehaviour
     // }
     private void OnCollisionEnter2D(Collision2D other)
     {
+        pierceCount--;
         other.gameObject.GetComponent<EnemyHealth>().takeDMG(projectileDMG);
-        if (destroyOnCollision)
+        if (limitedPiercing && pierceCount <= 0)
         {
             Destroy(gameObject);
         }
@@ -38,6 +45,7 @@ public class ProjectileController : MonoBehaviour
     {
         Vector2 direction = (target.position - transform.position).normalized;
         rb.velocity = direction * projectileSpeed;
+        main = this;
     }
     private void Update()
     {
@@ -47,4 +55,5 @@ public class ProjectileController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }

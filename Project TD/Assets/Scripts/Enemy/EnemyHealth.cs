@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
-{
+{    
+    public static EnemyHealth main;
+
     [Header("Stats")]
-    [SerializeField] private int HP = 2;
+    [SerializeField] public int HP = 2;
     [SerializeField] private int moneyDrop = 5;
     private bool isDestroyed = false;
     public void takeDMG(int dmg)

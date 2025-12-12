@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class BuildManager : MonoBehaviour
 {
     [Header("Refferences")]
-    [SerializeField] private GameObject[] towerPrefabs;
+    [SerializeField] private TowerBuilder[] towerPrefabs;
     private int selectedTower = 0;
     public static BuildManager main;
 
@@ -13,8 +14,12 @@ public class BuildManager : MonoBehaviour
     {
         main = this;
     }
-    public GameObject GetSelectedTower()
+    public TowerBuilder GetSelectedTower()
     {
         return towerPrefabs[selectedTower];
+    }
+    public void SetSelectedTower(int _selectedTower)
+    {
+        selectedTower = _selectedTower;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -25,6 +26,8 @@ public class EnemyController : MonoBehaviour
             //after the enemy reaches a target position, makes it go to a new target position
             if (pathIdx == LevelManager.main.path.Length)
             {
+                int enemyDmg = gameObject.GetComponent<EnemyHealth>().HP;
+                LevelManager.main.playerTakesDamage(enemyDmg);
                 EnemySpawner.onEnemyDestroy.Invoke();
                 Destroy(gameObject);
                 return;
@@ -33,7 +36,7 @@ public class EnemyController : MonoBehaviour
             {
                 target = LevelManager.main.path[pathIdx];
             }
-            //if it has reached the end, destroy it
+            //if it has reached the end, player takes damage then destroy itself
         }
     }
     private void FixedUpdate()

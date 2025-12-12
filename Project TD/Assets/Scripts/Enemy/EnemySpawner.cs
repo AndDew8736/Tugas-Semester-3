@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     //game object array because theres multiple enemy types
     [Header("Stats")]
     [SerializeField] private int baseEnemies = 8;
-    [SerializeField] private float enemiesPerSecond = 0.5f;
+    [SerializeField] private float enemiesPerSecond = 2f;
     [SerializeField] private float timeBetweenWaves = 5f;
     [SerializeField] private float difficultyScaling = 0.75f;
 
@@ -23,15 +23,19 @@ public class EnemySpawner : MonoBehaviour
     {
         onEnemyDestroy.AddListener(EnemyDestroyed);
     }
-    private int currentWave = 1;
+    public int currentWave = 1;
     private float timeSinceLastSpawn;
     public int enemiesAlive;
     private int enemiesLeftToSpawn;
     private bool isSpawning = false;
-    private int moneyPerRound = 100;
+    private int spawnCounter;
+    private int moneyPerRound = 30;
+    public static EnemySpawner main;
     private void Start()
     {
+        main = this;
         StartCoroutine(StartWave());
+
     }
     void Update()
     {
@@ -53,7 +57,15 @@ public class EnemySpawner : MonoBehaviour
     }
     private void SpawnEnemy()
     {
-        GameObject prefabToSpawn = enemyPrefabs[0];
+        spawnCounter++;
+        int enemyIdx = 0;
+        if (spawnCounter % 4 == 0)
+        {
+            enemyIdx = 1;
+        }
+        //calls new guy every 4 small guys
+        
+        GameObject prefabToSpawn = enemyPrefabs[enemyIdx];
         //sets the enemy type to spawn
         Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity);
         //generates an enemy using the start point in level manager script and quaternion for the rotation
@@ -63,6 +75,7 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenWaves);
         isSpawning = true;
         enemiesLeftToSpawn = EnemiesPerWave();
+        enemiesPerSecond++;
     }
     private int EnemiesPerWave()
     {
@@ -81,7 +94,4 @@ public class EnemySpawner : MonoBehaviour
     {
         enemiesAlive--;
     }
-
-    // Update is called once per frame
-
 }
